@@ -57,6 +57,6 @@ function main(fileName) {
 }
 
 
-main("0111.txt");
-main("0112.txt");
+main("0111.test");
+main("0112.test");
 
