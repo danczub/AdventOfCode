@@ -3,7 +3,8 @@
  around the dial are the numbers 0 through 99 in order. As you turn the dial, it makes a small click noise as it reaches each number.
 */
 function rotate(start, change, base) {
-    return ((start + change) + base) % base;
+    let position = (start + change) % base;
+    return position < 0 ? position + base : position;
 }
 
 function main(fileName) {
@@ -25,7 +26,7 @@ function main(fileName) {
     for(input of sequence) {
         let change = (input[0] === "L" ? -1 : 1) * Number(input.slice(1));
         position = rotate(position, change, base);
-        //console.log(position);
+        
         result += position === 0 ? 1 : 0;
     }
     console.log("The password: " + result);
