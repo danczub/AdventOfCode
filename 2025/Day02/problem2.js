@@ -2,12 +2,12 @@ function processRange(start, end) {
     let result = 0;
     
     for(let num = start; num <= end; num++) {
-        let numStr = "" + num;
-        let numStrLength = numStr.length;
+        const numStr = String(num);
+        const numStrLength = numStr.length;
 
         for(let patternLength = 1; patternLength <= numStrLength / 2; patternLength++) {
             if((numStrLength % patternLength) === 0) {
-                let pattern = numStr.slice(0, patternLength);
+                const pattern = numStr.slice(0, patternLength);
                 let valid = true;
 
                 //we need to check every chunk of numStr if it's identical with potencial pattern
@@ -27,8 +27,8 @@ function processRange(start, end) {
 
 function solveProblem(inputArray) {
     let result = 0;
-    for(input of inputArray) {
-        range = input.split("-");
+    for(let input of inputArray) {
+        const range = input.split("-");
         result += processRange(Number(range[0]), Number(range[1]));
     }
     return result;

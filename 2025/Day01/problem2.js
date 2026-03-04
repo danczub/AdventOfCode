@@ -1,6 +1,9 @@
+const BASE = 100;
 
 function rotatePass0(accumulator, currentValue) {
-    let change = (currentValue.slice(0,1) === "L" ? -1 : 1) * Number(currentValue.slice(1));
+    const LEFT = "L";
+    
+    let change = (currentValue[0] === LEFT ? -1 : 1) * Number(currentValue.slice(1));
     let position = (accumulator.position + change);
 
     let count = accumulator.count;
@@ -28,12 +31,12 @@ function rotatePass0(accumulator, currentValue) {
     };
 }
 
-function solveProblem(inpuArray) {
-    initialValue = {
+function solveProblem(inputArray) {
+    const initialValue = {
         position : 50,
         count : 0
     }
-    let result = inpuArray.reduce(rotatePass0, initialValue);
+    let result = inputArray.reduce(rotatePass0, initialValue);
     return result.count;
 }
 
@@ -52,8 +55,6 @@ function main(fileName) {
     console.log("The password: " + resultPassword);
 }
 
-
-const BASE = 100;
 
 main("input1.test");
 main("input2.test");

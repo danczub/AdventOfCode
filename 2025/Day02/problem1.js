@@ -1,10 +1,13 @@
 function processRange(start, end) {
     let result = 0;
     for(let num = start; num <= end; num++) {
-        let numStr = "" + num;
+        const numStr = String(num);
         //must have even number of digits
         if(numStr.length % 2 === 0) {
-            if(numStr.slice(0, numStr.length / 2) === numStr.slice(numStr.length / 2)) {
+            const midpoint = numStr.length / 2;
+            const firstHalf = numStr.slice(0, midpoint);
+            const secondHalf = numStr.slice(midpoint);
+            if(firstHalf === secondHalf) {
                 result += num;
             }
         }
@@ -14,8 +17,8 @@ function processRange(start, end) {
 
 function solveProblem(inputArray) {
     let result = 0;
-    for(input of inputArray) {
-        range = input.split("-");
+    for(let input of inputArray) {
+        let range = input.split("-");
         result += processRange(Number(range[0]), Number(range[1]));
     }
     return result;

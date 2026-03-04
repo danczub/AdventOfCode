@@ -20,11 +20,11 @@ function main(fileName) {
     let sequence = data.split("\n");
     
     let position = 50;
-    let base = 100;
+    const base = 100;
 
     let result = 0;
 
-    for(input of sequence) {
+    for(let input of sequence) {
         let change = (input[0] === "L" ? -1 : 1) * Number(input.slice(1));
         position = rotate(position, change, base);
         
