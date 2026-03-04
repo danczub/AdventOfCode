@@ -34,6 +34,6 @@ function main(fileName) {
 }
 
 
-main("0111.test");
-main("0112.test");
+main("input1.test");
+main("input2.test");
 
