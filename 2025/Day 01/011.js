@@ -1,6 +1,7 @@
 /*
  The safe has a dial with only an arrow on it; 
- around the dial are the numbers 0 through 99 in order. As you turn the dial, it makes a small click noise as it reaches each number.
+ around the dial are the numbers 0 through 99 in order. 
+ As you turn the dial, it makes a small click noise as it reaches each number.
 */
 function rotate(start, change, base) {
     let position = (start + change) % base;

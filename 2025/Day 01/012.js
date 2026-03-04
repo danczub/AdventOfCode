@@ -1,32 +1,40 @@
-/*
- The safe has a dial with only an arrow on it; 
- around the dial are the numbers 0 through 99 in order. As you turn the dial, it makes a small click noise as it reaches each number.
-*/
-function rotatePass0(start, change, base) {
-    let position = (start + change);
 
-    let count = 0
+function rotatePass0(accumulator, currentValue) {
+    let change = (currentValue.slice(0,1) === "L" ? -1 : 1) * Number(currentValue.slice(1));
+    let position = (accumulator.position + change);
+
+    let count = accumulator.count;
     if(position < 0) {
         //-99 should be counted as 1, but -100 as 2
-        count = Math.abs(Math.floor((position-1) / base));
+        count += Math.abs(Math.floor((position-1) / BASE));
     } else {
         //99 should be counted as 0, but 100 as 1
-        count = Math.abs(Math.floor(position / base));
+        count += Math.abs(Math.floor(position / BASE));
     }
     //if it was already 0 and went to the left, we cannot count it
-    if((position < 0) && (start === 0)) {
+    if((position < 0) && (accumulator.position === 0)) {
         count--;
     }
 
+    //if final position is 0, we should count it
     count += (position === 0) ? 1 : 0;
 
-    position = position % base;
-    position = position < 0 ? position + base : position;
+    position = position % BASE;
+    position = position < 0 ? position + BASE : position;
     
     return {
         position : position,
         count : count
     };
+}
+
+function solveProblem(inpuArray) {
+    initialValue = {
+        position : 50,
+        count : 0
+    }
+    let result = inpuArray.reduce(rotatePass0, initialValue);
+    return result.count;
 }
 
 function main(fileName) {
@@ -40,22 +48,12 @@ function main(fileName) {
     }
     let sequence = data.split("\n");
     
-    let position = 50;
-    let base = 100;
-
-    let result = 0;
-
-    for(input of sequence) {
-        let change = (input[0] === "L" ? -1 : 1) * Number(input.slice(1));
-
-        let functionResult = rotatePass0(position, change, base);
-        position = functionResult.position;
-        result += functionResult.count;
-        //console.log("" + change + ":\t" + position + "\t" + result);
-    }
-    console.log("The password: " + result);
+    let resultPassword = solveProblem(sequence);
+    console.log("The password: " + resultPassword);
 }
 
+
+const BASE = 100;
 
 main("0111.test");
 main("0112.test");
