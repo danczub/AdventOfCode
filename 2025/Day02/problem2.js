@@ -1,27 +1,30 @@
 function processRange(start, end) {
-    let result = 0;
-    
-    for(let num = start; num <= end; num++) {
-        const numStr = String(num);
-        const numStrLength = numStr.length;
+    let patternSet = new Set();
 
-        for(let patternLength = 1; patternLength <= numStrLength / 2; patternLength++) {
-            if((numStrLength % patternLength) === 0) {
-                const pattern = numStr.slice(0, patternLength);
-                let valid = true;
-
-                //we need to check every chunk of numStr if it's identical with potencial pattern
-                for(let i = 1; i < (numStrLength / patternLength); i++) {
-                    valid = valid && (pattern === numStr.slice(i * patternLength, (i + 1) * patternLength));
-                }
-                if(valid) {
-                    result += num;
-                    //make sure not to count number twice if it contains two different patterns
-                    break;
-                }
+    //we need to check every pottential pattern length
+    for(let patternLength = 1; patternLength <= (String(end).length / 2); patternLength++) {
+        let pattern = "1".padEnd(patternLength, "0");
+        
+        while(pattern.length <= patternLength) {
+            let fullPattern = pattern + pattern;
+            while(Number(fullPattern) < start) {
+                fullPattern += pattern;
             }
+            
+            while(Number(fullPattern) <= end) {
+                patternSet.add(Number(fullPattern));
+                fullPattern += pattern;
+            }
+            
+            pattern = String(Number(pattern) + 1);
         }
     }
+
+    let result = 0;
+    for(let patternItem of patternSet) {
+        result += patternItem;
+    }
+
     return result;
 }
 
@@ -45,8 +48,11 @@ function main(fileName) {
     }
     let sequence = data.split(",");
     
+    let startTime = new Date();
     let resultSum = solveProblem(sequence);
+    let processingTime = (new Date()).getTime() - startTime.getTime();
     console.log("The resultSum: " + resultSum);
+    console.log("Processing time: " + processingTime);
 }
 
 main("input1.test");
