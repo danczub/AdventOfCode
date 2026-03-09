@@ -1,8 +1,9 @@
+const fs = require('node:fs');
+
 const BASE = 100;
+const LEFT = "L";
 
 function rotatePass0(accumulator, currentValue) {
-    const LEFT = "L";
-    
     let change = (currentValue[0] === LEFT ? -1 : 1) * Number(currentValue.slice(1));
     let position = (accumulator.position + change);
 
@@ -41,7 +42,6 @@ function solveProblem(inputArray) {
 }
 
 function main(fileName) {
-    const fs = require('node:fs');
     let data = null;
     try {
         data = fs.readFileSync(fileName, 'utf8');

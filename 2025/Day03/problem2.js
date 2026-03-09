@@ -15,8 +15,7 @@ function getMaxDigit(str, leftIndex, rightIndex) {
     };
 }
 
-function getMaxJoltage
-(input) {
+function getMaxJoltage(input) {
     let leftIndex = 0;
     let rightIndex = input.length - 12;
 
