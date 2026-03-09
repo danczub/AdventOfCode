@@ -1,5 +1,5 @@
-const InputFile = require('./../../tools/InputFile.js');
-const {Matrix} = require('./../../tools/Matrix.js');
+const InputFile = require('../../tools/InputFile.js');
+const {Matrix} = require('../../tools/Matrix.js');
 
 const EMPTY = ".";
 const PAPER = "@";
