@@ -83,5 +83,4 @@ function main(fileNameList) {
     }
 }
 
-//main(["input1.test"]);
 main(["input1.test", "input2.test"]);
