@@ -1,4 +1,4 @@
-const InputFile = require('./../../tools/InputFile.js');
+const InputFile = require('../../tools/InputFile.js');
 
 const EMPTY = ".";
 const PAPER = "@";

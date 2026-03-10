@@ -16,7 +16,7 @@ function getFreshCount(freshRangeList) {
     for(let range of freshRangeList) {
         let currentRangeCount = Math.max(0, range.end - Math.max(countedMax + 1, range.start) + 1);
         result += currentRangeCount;
-
+        
         countedMax = Math.max(range.end, countedMax);
     }
     
