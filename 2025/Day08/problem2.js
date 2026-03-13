@@ -89,7 +89,10 @@ function main(inputList) {
         let inputData = InputFile.getData();
         InputFile.clearData();
         
-        console.log("File: " + input.fileName + ", Result: " + solve(inputData, input.input));
+        let startTime = new Date();
+        let solution = solve(inputData, input.input);
+        let executionTime = (new Date()).getTime() - startTime.getTime();
+        console.log("File: " + input.fileName + ", Result: " + solution + ", Execution time: " + executionTime);
     }
 }
 
