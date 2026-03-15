@@ -20,9 +20,6 @@ function solve(inputData, inputParameter) {
     let result = 0;
     let pointArray = readProblem(inputData);
 
-    for(let point of pointArray) {
-        console.log("" + point);
-    }
     for(let i = 0; i < pointArray.length - 1; i++) {
         for(let j = i + 1; j < pointArray.length; j++) {
             let area = Point.get2DArea(pointArray[i], pointArray[j]);
