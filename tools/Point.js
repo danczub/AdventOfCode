@@ -17,6 +17,7 @@ class Point {
         return `x = ${this.#x}, y = ${this.#y}, z = ${this.#z}, id = ${this.#id}`;
     }
 
+    
     get x() {
         return this.#x;
     }
@@ -33,6 +34,11 @@ class Point {
     static getDistance(pointA, pointB) {
         return Math.sqrt((pointA.x - pointB.x) ** 2 + (pointA.y - pointB.y) ** 2 + (pointA.z - pointB.z) ** 2);
     }
+
+    static get2DArea(pointA, pointB) {
+        return (Math.abs(pointA.x - pointB.x) + 1) * (Math.abs(pointA.y - pointB.y) + 1);
+    }
+
 }
 
 module.exports = {Point};
